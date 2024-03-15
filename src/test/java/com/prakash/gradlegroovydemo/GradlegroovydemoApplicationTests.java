@@ -1,4 +1,4 @@
-package com.example.gradlegroovydemo;
+package com.prakash.gradlegroovydemo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

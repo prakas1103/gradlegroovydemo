@@ -1,4 +1,4 @@
-package com.example.gradlegroovydemo;
+package com.prakash.gradlegroovydemo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

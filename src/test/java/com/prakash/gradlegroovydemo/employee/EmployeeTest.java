@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.net.URI;
-import java.net.URL;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

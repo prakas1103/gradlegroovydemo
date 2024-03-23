@@ -2,17 +2,21 @@ package com.prakash.gradlegroovydemo.controller;
 
 import com.prakash.gradlegroovydemo.model.Employee;
 import com.prakash.gradlegroovydemo.service.EmployeeService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
-    @Autowired
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
+
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
     @PostMapping
     public Employee saveEmployee(){
@@ -28,10 +32,11 @@ public class EmployeeController {
         return employeeService.getAllEmployees();
     }
     @GetMapping("/{id}")
-    public Employee getEmployeeById(@PathVariable Integer id){
-        return employeeService.getEmployeeById(id);
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable Integer id){
+        Optional<Employee> employee = employeeService.getEmployeeById(id);
+        return employee.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public void deleteEmployeeById(@PathVariable Integer id){
         employeeService.deleteEmployeeById(id);
     }

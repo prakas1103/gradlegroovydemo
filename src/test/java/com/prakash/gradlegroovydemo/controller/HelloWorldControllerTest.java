@@ -1,4 +1,4 @@
-package com.prakash.gradlegroovydemo.employee;
+package com.prakash.gradlegroovydemo.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +13,14 @@ import java.net.URI;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class EmployeeTest {
+public class HelloWorldControllerTest {
     @LocalServerPort
     private int port;
     @Autowired
     private TestRestTemplate restTemplate;
 
     @Test
-    public void getHello() throws Exception {
+    public void getHelloWorldTest() throws Exception {
 
         ResponseEntity<String> response = restTemplate.getForEntity(
                 new URI("http://localhost:" + port + "/").toString(), String.class);
@@ -29,7 +29,7 @@ public class EmployeeTest {
     }
 
     @Test
-    public void getBadRequest() throws Exception {
+    public void getBadRequestTest() throws Exception {
 
         ResponseEntity<String> response = restTemplate.getForEntity(
                 new URI("http://localhost:" + port + "/badRequest").toString(), String.class);

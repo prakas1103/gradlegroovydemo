@@ -2,11 +2,11 @@ package com.prakash.gradlegroovydemo.controller;
 
 import com.prakash.gradlegroovydemo.model.Employee;
 import com.prakash.gradlegroovydemo.service.EmployeeService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Random;
 
 @RestController
@@ -19,25 +19,28 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public Employee saveEmployee(){
+    public ResponseEntity<Employee> saveEmployee(){
         Random random = new Random();
-        int randomWintNextIntWithinARange = random.nextInt(1000 - 1) + 1;
+        int randomIntWithinARange = random.nextInt(1000 - 1) + 1;
 
-        Employee employee = new Employee("prakash"+randomWintNextIntWithinARange,randomWintNextIntWithinARange);
-        return employeeService.saveEmployee(employee);
+        Employee employee = new Employee("prakash"+randomIntWithinARange,randomIntWithinARange);
+        return new ResponseEntity<>(employee, HttpStatus.CREATED);
     }
 
     @GetMapping
-    public List<Employee> getAllEmployees() {
-        return employeeService.getAllEmployees();
+    public ResponseEntity<List<Employee>> getAllEmployees() {
+        List<Employee> employees = employeeService.getAllEmployees();
+        return new ResponseEntity<>(employees,HttpStatus.OK);
     }
     @GetMapping("/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable Integer id){
-        Optional<Employee> employee = employeeService.getEmployeeById(id);
-        return employee.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        Employee employee = employeeService.getEmployeeById(id);
+//        return employee.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        return new ResponseEntity<>(employee,HttpStatus.OK);
     }
     @DeleteMapping("/{id}")
-    public void deleteEmployeeById(@PathVariable Integer id){
+    public ResponseEntity<Void> deleteEmployeeById(@PathVariable Integer id){
         employeeService.deleteEmployeeById(id);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 }

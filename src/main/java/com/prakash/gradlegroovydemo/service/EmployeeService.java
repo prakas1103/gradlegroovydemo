@@ -25,8 +25,8 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
-    public Optional<Employee> getEmployeeById(Integer id){
-        return employeeRepository.findById(id);
+    public Employee getEmployeeById(Integer id){
+        return employeeRepository.findById(id).get();
     }
 
     public void deleteEmployeeById(Integer id){

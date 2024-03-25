@@ -24,7 +24,8 @@ public class EmployeeController {
         int randomIntWithinARange = random.nextInt(1000 - 1) + 1;
 
         Employee employee = new Employee("prakash"+randomIntWithinARange,randomIntWithinARange);
-        return new ResponseEntity<>(employee, HttpStatus.CREATED);
+
+        return new ResponseEntity<>(employeeService.saveEmployee(employee), HttpStatus.CREATED);
     }
 
     @GetMapping

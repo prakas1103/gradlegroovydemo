@@ -6,6 +6,7 @@ This branch has code for
 >* Global Exception Handler 
 >* Integration test
 >* Jpa Joins
+>* Added one-to-one relationship using user and address
 
 
 For JPA Joins for creating data, use this syntax

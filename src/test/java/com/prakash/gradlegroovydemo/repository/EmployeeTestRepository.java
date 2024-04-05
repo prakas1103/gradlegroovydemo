@@ -1,4 +1,4 @@
-package com.prakash.gradlegroovydemo.controller;
+package com.prakash.gradlegroovydemo.repository;
 
 import com.prakash.gradlegroovydemo.model.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;

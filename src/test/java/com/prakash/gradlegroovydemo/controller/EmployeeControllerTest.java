@@ -1,6 +1,7 @@
 package com.prakash.gradlegroovydemo.controller;
 
 import com.prakash.gradlegroovydemo.model.Employee;
+import com.prakash.gradlegroovydemo.repository.EmployeeTestRepository;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,7 +13,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
@@ -22,6 +23,8 @@ public class EmployeeControllerTest {
     private int port;
     @Autowired
     private TestRestTemplate restTemplate;
+    @Autowired
+    EmployeeTestRepository repository;
 
     private String baseUrl = "http://localhost:";
     @BeforeEach
@@ -36,9 +39,18 @@ public class EmployeeControllerTest {
         ResponseEntity<Employee> response = restTemplate.postForEntity(
                 baseUrl, employee, Employee.class);
         Employee employee1 = response.getBody();
+        assertAll(
+                ()-> assertNotNull(employee1),
+                ()->assertEquals(1,employee1.getId()),
+                ()->assertEquals(HttpStatus.CREATED,response.getStatusCode()),
+                ()->assertEquals(1, repository.count())
+        );
+        /**
+         * The above code is equivalent to below multiple assert statements
         assert employee1 != null;
         assertEquals(1,employee1.getId());
         assertEquals(HttpStatus.CREATED,response.getStatusCode());
+         **/
     }
 
     @Test

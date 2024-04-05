@@ -1,4 +1,4 @@
-package com.prakash.gradlegroovydemo.repository.test;
+package com.prakash.gradlegroovydemo.repositorytest;
 
 import com.prakash.gradlegroovydemo.model.jpaone2one.Address;
 import com.prakash.gradlegroovydemo.model.jpaone2one.User;

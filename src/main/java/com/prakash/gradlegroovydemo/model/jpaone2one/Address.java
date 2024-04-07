@@ -20,7 +20,7 @@ public class Address {
     private Long id;
 
     @NonNull
-    @NotEmpty
+    @NotEmpty(message = "Address should not be blank")
     @Size(min = 2, message = "Address name should have at least 2 characters")
     private String address;
 

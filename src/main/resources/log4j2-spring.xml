@@ -18,7 +18,7 @@
                 <Pattern>${sys:FILE_LOG_PATTERN}</Pattern>
             </PatternLayout>
             <Policies>
-                <SizeBasedTriggeringPolicy size="10 MB" />
+                <SizeBasedTriggeringPolicy size="10 KB" />
             </Policies>
         </RollingFile>
     </Appenders>

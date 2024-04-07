@@ -7,6 +7,8 @@ This branch has code for
 >* Integration test
 >* Jpa Joins
 >* Added one-to-one relationship using user and address
+>* Added validation in one-to-one(Address and User) and in ValidationUser class
+>  * For one-to-one use @Valid annoation on the entity reference in the parent class
 
 
 For JPA Joins for creating data, use this syntax
